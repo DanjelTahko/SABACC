@@ -1,5 +1,6 @@
 import pygame, sys
 from settings import *
+from level import Level
 
 class Game:
 
@@ -9,9 +10,12 @@ class Game:
         self.clock = pygame.time.Clock()
 
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        pygame.display.set_caption("CARD GAME FROM ANOTHER GALAXY")
+        pygame.mouse.set_visible(False)
 
+        self.level = Level()
 
-    def run(self):
+    def run(self): 
 
         while (True):
 
@@ -24,7 +28,9 @@ class Game:
                         pygame.quit()
                         sys.exit()
 
-            self.screen.fill('black')
+            #self.screen.fill('black')
+
+            self.level.run()
             pygame.display.update()
             self.clock.tick(FPS)
 
