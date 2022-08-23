@@ -1,5 +1,3 @@
-
-
 WIDTH   = 1280
 HEIGHT  = 720
 FPS     = 60
@@ -9,11 +7,26 @@ GAME_SETTINGS = {
     'rounds' : 4
 }
 
-
 CARD_CONFIG = {
     'numbers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     'symbols': ["square", "circle", "triangle"],
     'status': ["positive", "negative"]
+}
+
+WINNING_HANDS = {
+
+    "PURE SABACC": 11,
+    "FULL SABACC": 10,
+    "FLEET": 9,
+    "YEE-HAA": 8,
+    "RHYLET": 7,
+    "SQUADRON": 6,
+    "GEE WHIZ": 5,
+    "STRAIGHT KHYRON": 4,
+    "BANTHAS WILD": 3,
+    "RULE OF TWO": 2,
+    "SABACC": 1,
+    "ZERO": 0
 }
 
 

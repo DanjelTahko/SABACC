@@ -1,21 +1,6 @@
 from card import Card
-
-WINNING_HANDS = {
-
-    "PURE SABACC": 11,
-    "FULL SABACC": 10,
-    "FLEET": 9,
-    "YEE-HAA": 8,
-    "RHYLET": 7,
-    "SQUADRON": 6,
-    "GEE WHIZ": 5,
-    "STRAIGHT KHYRON": 4,
-    "BANTHAS WILD": 3,
-    "RULE OF TWO": 2,
-    "SABACC": 1,
-    "ZERO": 0
-}
-
+from settings import *
+from debug import debug
 
 class Calculate:
 
@@ -165,12 +150,9 @@ class Calculate:
             self.score_name = 'NULRHEK'
             self.score = int(f"-{abs(self.score)}")
 
-        print(f"{self.score_name} : {self.score}")
-        print(self.number_hand)
+        print(f"{self.score_name} : {self.score}\n{self.number_hand}")
+    
         return self.score
-
-
-
 
 """
 card1 = Card(5, "square", "positive")
