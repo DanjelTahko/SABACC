@@ -5,6 +5,10 @@ HEIGHT  = 720
 FPS     = 60
 CARD_BG = '#b5651d'
 
+GAME_SETTINGS = {
+    'rounds' : 4
+}
+
 
 CARD_CONFIG = {
     'numbers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],

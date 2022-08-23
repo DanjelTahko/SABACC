@@ -9,9 +9,17 @@ class Card(pygame.sprite.Sprite):
         self.number = number 
         self.symbol = symbol
         self.status = status
+
+        self.value = None
+        if (self.status == "negative"):
+            self.value = int(f"-{self.number}")
+        else:
+            self.value = int(self.number)
+
+        # what does this do?
         self.rect = None
 
-    def return_card(self):
+    def card_graphic(self):
 
         PATH = f"graphic/CARDS/{self.number}_{self.symbol}_{self.status}.png"
         card = pygame.image.load(PATH).convert_alpha()

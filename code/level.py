@@ -6,6 +6,7 @@ from deck import Deck
 from ui import UI
 from winner import *
 
+
 class Level:
 
     def __init__(self) -> None:
@@ -53,6 +54,12 @@ class Level:
     def draw_card(self):
         self.my_cards.append(self.cards.pop())
 
+    def calculate(self):
+        score = 0
+        for card in self.my_cards:
+            score += card.value
+        return score
+
     
     def inputs(self):
 
@@ -78,6 +85,8 @@ class Level:
                     self.discard = True
                     self.discard_state = "draw"
                     self.time = current_time
+
+                    # Add "back" -button if wrongly pressed
                     
 
                 # Swap
@@ -86,6 +95,8 @@ class Level:
                     self.discard = True
                     self.discard_state = "swap"
                     self.time = current_time
+
+                    # Add "back" -button if wrongly pressed
                     
 
                 # Stand
@@ -121,7 +132,7 @@ class Level:
         # MY cards
         x = 640 - (60 * len(self.my_cards))
         for i in range(len(self.my_cards)):
-            my_card = self.my_cards[i].return_card()
+            my_card = self.my_cards[i].card_graphic()
             self.my_cards[i].rect = my_card.get_rect(center = (x,400))
             self.surface.blit(my_card, self.my_cards[i].rect)
             x += 150
@@ -152,7 +163,7 @@ class Level:
         # MY cards
         x = 640 - (60 * len(self.my_cards))
         for i in range(len(self.my_cards)):
-            my_card = self.my_cards[i].return_card()
+            my_card = self.my_cards[i].card_graphic()
             self.my_cards[i].rect = my_card.get_rect(center = (x,600))
             self.surface.blit(my_card, self.my_cards[i].rect)
             x += 150
@@ -163,7 +174,7 @@ class Level:
         self.surface.blit(upsidedown_deck, upsidedown_rect)
 
         # Discard pile
-        discarded_cards = self.discard_pile[-1].return_card()
+        discarded_cards = self.discard_pile[-1].card_graphic()
         created = discarded_cards.get_rect(center = (600,300))
         self.surface.blit(discarded_cards, created)
 
@@ -185,7 +196,7 @@ class Level:
 
         # ATM points
         rounds_box_v = pygame.Rect(1000, 650, 50, 50)
-        rounds_text_v = font.render(str(calculate(self.my_cards)), False, 'black')
+        rounds_text_v = font.render(str(self.calculate()), False, 'black')
         pygame.draw.rect(self.surface, 'grey', rounds_box_v)
         self.surface.blit(rounds_text_v, (1010, 660))
 
@@ -215,13 +226,15 @@ class Level:
             if (self.first_dice_index == self.second_dice_index):
                 self.junk_cards()
             self.rounds_before += 1
-            if (self.rounds_before == 3):
+            if (self.rounds_before == GAME_SETTINGS['rounds']):
                 print("game done, calculationg winner")
-                print(calculate(self.my_cards))
-                if current_time - self.time <= 2000:
-                    self.new_game = True
-                    self.rounds = 0
-                    self.rounds_before = 0
+                calc  = Calculate(self.my_cards)
+                calc.run()
+                #print(calculate(self.my_cards))
+                
+                self.new_game = True
+                self.rounds = 0
+                self.rounds_before = 0
       
 
         
