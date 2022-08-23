@@ -9,8 +9,12 @@ class Game:
         pygame.init()
         self.clock = pygame.time.Clock()
 
+        # Change this to something better
+        self.icon = pygame.image.load("graphic/DICE/1.png")
+
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption("CARD GAME FROM ANOTHER GALAXY")
+        pygame.display.set_icon(self.icon)
         pygame.mouse.set_visible(False)
 
         self.level = Level()

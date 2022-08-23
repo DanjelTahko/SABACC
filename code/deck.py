@@ -18,7 +18,7 @@ class Deck:
                 self.deck.append(new_card_negative)
                 self.deck.append(new_card_positive)
 
-        neutral_card = Card(0, 'zero', 'neutral')
+        neutral_card = Card(0, 'neutral', 'neutral')
         self.deck.append(neutral_card)
         self.deck.append(neutral_card)
 
