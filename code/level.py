@@ -1,4 +1,4 @@
-import imp
+import random
 import pygame
 from card import Card
 from settings import *
@@ -37,6 +37,9 @@ class Level:
         self.cards = []
 
         self.ui = UI()
+
+        self.first_dice_index = 1
+        self.second_dice_index = 6
 
 
     def start_new_game(self):
@@ -174,6 +177,19 @@ class Level:
         pygame.draw.rect(self.surface, 'grey', rounds_box)
         self.surface.blit(rounds_text, (30, 655))
 
+        # Rolling dices
+        dice_1 = pygame.image.load(f"graphic/DICE/{self.first_dice_index}.png")
+        dice_2 = pygame.image.load(f"graphic/DICE/{self.second_dice_index}.png")
+        self.surface.blit(dice_1, (275, 300))
+        self.surface.blit(dice_2, (300, 310))
+
+        # ATM points
+        rounds_box_v = pygame.Rect(1000, 650, 50, 50)
+        rounds_text_v = font.render(str(calculate(self.my_cards)), False, 'black')
+        pygame.draw.rect(self.surface, 'grey', rounds_box_v)
+        self.surface.blit(rounds_text_v, (1010, 660))
+
+
         # Cursor
         self.cursor_rec.topleft = pygame.mouse.get_pos()
         self.surface.blit(self.cursor_img, self.cursor_rec)
@@ -181,6 +197,7 @@ class Level:
     def run(self):
 
         self.surface.blit(self.bg_table, (0,0))
+        current_time = pygame.time.get_ticks()
 
         if (self.new_game):
             self.start_new_game()
@@ -193,14 +210,18 @@ class Level:
             self.discard_card()
 
         if (self.rounds_before != self.rounds):
-            print("rolling dice")
+            self.first_dice_index = random.randint(1,6)
+            self.first_dice_index = random.randint(1,6)
+            if (self.first_dice_index == self.second_dice_index):
+                self.junk_cards()
             self.rounds_before += 1
             if (self.rounds_before == 3):
                 print("game done, calculationg winner")
-                calculate(self.my_cards)
-                self.new_game = True
-                self.rounds = 0
-                self.rounds_before = 0
+                print(calculate(self.my_cards))
+                if current_time - self.time <= 2000:
+                    self.new_game = True
+                    self.rounds = 0
+                    self.rounds_before = 0
       
 
         

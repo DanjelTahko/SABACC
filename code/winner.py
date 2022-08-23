@@ -13,4 +13,4 @@ def calculate(hand):
     for j in range(len(hand)):
         totti += hand[j].get_card_value()['number']
 
-    print(totti)
+    return totti
