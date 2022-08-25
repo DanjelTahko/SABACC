@@ -13,8 +13,6 @@ class Level:
 
         self.surface = pygame.display.get_surface()
 
-        self.card_group = pygame.sprite.Group()
-
         self.cursor_img = pygame.image.load("graphic/mouse.png").convert_alpha()
         self.cursor_rec = self.cursor_img.get_rect().inflate(-34, -36)
 
@@ -65,7 +63,7 @@ class Level:
 
         current_time = pygame.time.get_ticks()
 
-        if (current_time - self.time >= 200):
+        if (current_time - self.time >= 100):
 
             mouse = pygame.mouse.get_pressed()
 
@@ -192,7 +190,7 @@ class Level:
         dice_1 = pygame.image.load(f"graphic/DICE/{self.first_dice_index}.png")
         dice_2 = pygame.image.load(f"graphic/DICE/{self.second_dice_index}.png")
         self.surface.blit(dice_1, (275, 300))
-        self.surface.blit(dice_2, (300, 310))
+        self.surface.blit(dice_2, (310, 310))
 
         # ATM points
         rounds_box_v = pygame.Rect(1000, 650, 50, 50)
@@ -204,6 +202,9 @@ class Level:
         # Cursor
         self.cursor_rec.topleft = pygame.mouse.get_pos()
         self.surface.blit(self.cursor_img, self.cursor_rec)
+
+    def animation(self):
+        pass
 
     def run(self):
 

@@ -3,6 +3,11 @@ HEIGHT  = 720
 FPS     = 60
 CARD_BG = '#b5651d'
 
+UI_FONT = "graphic/Pixeled.ttf"
+UI_FONT_SIZE = 35
+UI_FONT_COLOR = "black"
+UI_BG_COLOR = "grey"
+
 GAME_SETTINGS = {
     'rounds' : 4
 }

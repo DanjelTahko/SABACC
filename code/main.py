@@ -1,6 +1,8 @@
 import pygame, sys
 from settings import *
-from level import Level
+#from level import Level
+
+from test_level import LEVEL
 
 class Game:
 
@@ -17,7 +19,7 @@ class Game:
         pygame.display.set_icon(self.icon)
         pygame.mouse.set_visible(False)
 
-        self.level = Level()
+        self.corellian_spike = LEVEL()
 
     def run(self): 
 
@@ -34,7 +36,7 @@ class Game:
 
             #self.screen.fill('black')
 
-            self.level.run()
+            self.corellian_spike.run()
             pygame.display.update()
             self.clock.tick(FPS)
 
@@ -42,3 +44,5 @@ class Game:
 if __name__ == "__main__":
     game = Game()
     game.run()
+
+# Add more sabacc variants when done 
