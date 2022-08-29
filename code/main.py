@@ -1,6 +1,7 @@
+from re import A
 import pygame, sys
 from settings import *
-#from level import Level
+from level import Level
 
 from test_level import LEVEL
 

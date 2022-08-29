@@ -3,6 +3,7 @@ import pygame
 from settings import *
 from test_iu import ui
 from player import Player
+from deck import Deck
 
 
 class LEVEL():
@@ -14,6 +15,11 @@ class LEVEL():
 
         # TEST
         self.player = Player()
+
+        # Deck setup
+        self.deck = Deck()
+        self.deck_cards = []
+        self.new_game()
 
         # Background setup
         #bg_table_path = pygame.image.load("graphic/table.jpeg").convert_alpha()
@@ -30,13 +36,41 @@ class LEVEL():
         self.cool_down = 100
         #self.cool_down_animation = 200
 
+    def new_game(self):
+        self.deck_cards = self.deck.create_deck()
+        self.draw_card()
+        self.draw_card()
+
+
     def draw_surface(self):
         
         self.UI.display(self.player)
+
+    def draw_card(self):
+        self.player.cards.append(self.deck_cards.pop())
         
 
     def input(self):
-        pass
+        
+        current_time = pygame.time.get_ticks()
+
+        if (current_time - self.time >= self.cool_down):
+
+            mouse = pygame.mouse.get_pressed()
+
+            if (mouse[0]):
+
+                # Draw
+                if (self.cursor_rec.colliderect(self.UI.button_draw) and len(self.player.cards) < 5): 
+        
+                    self.draw_card()
+                    self.time = current_time
+
+                if (self.cursor_rec.colliderect(self.UI.card_1)): 
+                    pygame.draw.rect(self.display_surface, 'gold', self.UI.button_bet_check, 3)
+                    pygame.draw.ellipse(self.display_surface, 'gold', self.UI.card_1)
+                
+
 
     def animation(self):
         pass

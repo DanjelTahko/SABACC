@@ -28,14 +28,8 @@ class Card(pygame.sprite.Sprite):
 
     def get_card_value(self):
 
-        num = None
-        if (self.status == "negative"):
-            num = int(f"-{self.number}")
-        else:
-            num = int(self.number)
-
         return {
-            'number': num,
+            'number': self.value,
             'symbol': self.symbol,
             'status': self.status
         }

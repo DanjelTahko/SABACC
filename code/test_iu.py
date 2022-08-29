@@ -23,6 +23,13 @@ class ui():
         self.button_bet_raise = pygame.Rect(25, 330, 200, 50)
         self.button_bet_junk  = pygame.Rect(25, 390, 200, 50)
 
+        # Card rects
+        self.card_1 = None
+        self.card_2 = None
+        self.card_3 = None
+        self.card_4 = None
+        self.card_5 = None
+
     def show_menu_play(self):
 
         #amount_cards = len(cards)
@@ -120,10 +127,134 @@ class ui():
         pygame.draw.rect(self.display_surface, UI_BG_COLOR, points_stats)
         self.display_surface.blit(points_stats_text, (1210, 650))
  
+    def show_cards(self, player):
+
+        # Cursor position
+        pos = pygame.mouse.get_pos()
+
+        """
+            [140] | 10 | [140]
+            # middle = 640!!
+        """
+
+        if (len(player.cards) == 2):
+
+            card_1 = player.cards[0].card_graphic()
+            self.card_1 = card_1.get_rect(topleft = (495, 600))
+            if (self.card_1.collidepoint(pos[0], pos[1])):
+                self.card_1 = card_1.get_rect(topleft = (495, 495))
+
+            card_2 = player.cards[1].card_graphic()
+            self.card_2 = card_2.get_rect(topleft = (645, 600))
+            if (self.card_2.collidepoint(pos[0], pos[1])):
+                self.card_2 = card_2.get_rect(topleft = (645, 495))
+
+            self.display_surface.blit(card_1, self.card_1)
+            self.display_surface.blit(card_2, self.card_2)
+
+        elif (len(player.cards) == 3):
+
+            card_1 = player.cards[0].card_graphic()
+            self.card_1 = card_1.get_rect(topleft = (420, 600))
+            if (self.card_1.collidepoint(pos[0], pos[1])):
+                self.card_1 = card_1.get_rect(topleft = (420, 495))
+
+            card_2 = player.cards[1].card_graphic()
+            self.card_2 = card_2.get_rect(topleft = (570, 600))
+            if (self.card_2.collidepoint(pos[0], pos[1])):
+                self.card_2 = card_2.get_rect(topleft = (570, 495))
+
+            card_3 = player.cards[2].card_graphic()
+            self.card_3 = card_3.get_rect(topleft = (720, 600))
+            if (self.card_3.collidepoint(pos[0], pos[1])):
+                self.card_3 = card_3.get_rect(topleft = (720, 495))
+
+            self.display_surface.blit(card_1, self.card_1)
+            self.display_surface.blit(card_2, self.card_2)
+            self.display_surface.blit(card_3, self.card_3)
+
+        elif (len(player.cards) == 4):
+
+            card_1 = player.cards[0].card_graphic()
+            self.card_1 = card_1.get_rect(topleft = (345, 600))
+            if (self.card_1.collidepoint(pos[0], pos[1])):
+                self.card_1 = card_1.get_rect(topleft = (345, 495))
+
+            card_2 = player.cards[1].card_graphic()
+            self.card_2 = card_2.get_rect(topleft = (495, 600))
+            if (self.card_2.collidepoint(pos[0], pos[1])):
+                self.card_2 = card_2.get_rect(topleft = (495, 495))
+
+            card_3 = player.cards[2].card_graphic()
+            self.card_3 = card_3.get_rect(topleft = (645, 600))
+            if (self.card_3.collidepoint(pos[0], pos[1])):
+                self.card_3 = card_3.get_rect(topleft = (645, 495))
+
+            card_4 = player.cards[3].card_graphic()
+            self.card_4 = card_4.get_rect(topleft = (795, 600))
+            if (self.card_4.collidepoint(pos[0], pos[1])):
+                self.card_4 = card_4.get_rect(topleft = (795, 495))
+
+            self.display_surface.blit(card_1, self.card_1)
+            self.display_surface.blit(card_2, self.card_2)
+            self.display_surface.blit(card_3, self.card_3)
+            self.display_surface.blit(card_4, self.card_4)
+
+        elif (len(player.cards) == 5):
+
+            card_1 = player.cards[0].card_graphic()
+            self.card_1 = card_1.get_rect(topleft = (270, 600))
+            if (self.card_1.collidepoint(pos[0], pos[1])):
+                self.card_1 = card_1.get_rect(topleft = (270, 495))
+            
+            card_2 = player.cards[1].card_graphic()
+            self.card_2 = card_2.get_rect(topleft = (420, 600))
+            if (self.card_2.collidepoint(pos[0], pos[1])):
+                self.card_2 = card_2.get_rect(topleft = (420, 495))
+
+            card_3 = player.cards[2].card_graphic()
+            self.card_3 = card_3.get_rect(topleft = (570, 600))
+            if (self.card_3.collidepoint(pos[0], pos[1])):
+                self.card_3 = card_3.get_rect(topleft = (570, 495))
+
+            card_4 = player.cards[3].card_graphic()
+            self.card_4 = card_4.get_rect(topleft = (720, 600))
+            if (self.card_4.collidepoint(pos[0], pos[1])):
+                self.card_4 = card_4.get_rect(topleft = (720, 495))
+
+            card_5 = player.cards[3].card_graphic()
+            self.card_5 = card_5.get_rect(topleft = (870, 600))
+            if (self.card_5.collidepoint(pos[0], pos[1])):
+                self.card_5 = card_5.get_rect(topleft = (870, 495))
+
+            self.display_surface.blit(card_1, self.card_1)
+            self.display_surface.blit(card_2, self.card_2)
+            self.display_surface.blit(card_3, self.card_3)
+            self.display_surface.blit(card_4, self.card_4)
+            self.display_surface.blit(card_5, self.card_5)
+        
+        """
+        x = 640 - (60 * len(player.player_cards))
+        for 
+
+        x = 1280
+        left = 75 | right = 1205
+
+        # CARD
+        x = 140
+        y = 200
+
+        border_left = 1130
+
+        #5 =  43 - card (140) - 43
+        """
+
+
 
     def display(self, player):
-        self.show_menu_bet()
+        self.show_menu_play()
         self.show_stats(player)
+        self.show_cards(player)
 
 
 """
